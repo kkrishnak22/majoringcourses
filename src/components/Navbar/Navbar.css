@@ -1,0 +1,110 @@
+.navbar {
+  height: 80px;
+  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+ 
+  background-color: #000000; 
+  color: #fff; 
+}
+
+.nav-left {
+  
+  
+  width: 150px;
+}
+
+.majoring-img {
+  width: 40px; /* Adjust the width as needed */
+  margin-right: 10px;
+}
+
+.middle-sec {
+  max-width: 700px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+
+}
+
+.middle-sec-left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin-right: 20px;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+  display: none; /* Initially hide the mobile menu */
+  cursor: pointer;
+}
+
+.mobile-menu-items {
+  display: none; /* Initially hide the mobile menu items */
+  flex-direction: column;
+  background-color: #333; /* Example background color */
+  padding: 10px;
+  position: absolute;
+  top: 60px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+}
+
+@media (max-width: 768px) {
+  .middle-sec {
+    display: none; /* Hide the middle section in mobile view */
+  }
+
+  .right-nav {
+    display: none; /* Hide the right-nav section in mobile view */
+  }
+
+  .mobile-menu {
+    display: block; /* Show the mobile menu in mobile view */
+  }
+
+  .mobile-menu-items {
+    display: flex; /* Show the mobile menu items in mobile view */
+  }
+}
+
+/* ... (previous styles) */
+
+/* Button Styles */
+button {
+  padding: 10px 20px;
+  background-color: #0b0a0a;
+  color: #fff;
+  border: none;
+
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #d697fd; /* Darker color on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Example box shadow on hover */
+  border-radius: 25px;
+}
+
+/* ... (remaining styles) */
+.middle-sec-left input {
+  height: 40px;
+  flex: 1;
+  padding: 8px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 2px solid #4b4d4b; /* Example border color */
+  border-radius: 40px;
+  background-color: #f4e3ff;
+  outline: none;
+  font-size: 16px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inside shadow */
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.middle-sec-left input:focus {
+  border: 2px solid #242524; /* Darker border color on focus */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Example box shadow on focus */
+}

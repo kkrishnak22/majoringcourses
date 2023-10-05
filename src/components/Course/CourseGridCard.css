@@ -1,0 +1,10 @@
+.course-item-1 {
+    background-color: rgb(234, 219, 60);
+    max-width: 100%;
+    min-height: 250px;
+    height: auto;
+  }
+
+  .course-image-container {
+    height: 80%;
+  }
