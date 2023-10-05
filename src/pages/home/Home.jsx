@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Carousel from "nuka-carousel";
 
 import "./home.css";
@@ -7,6 +7,42 @@ import Image from "../../assets/majoringicon.png";
 import CourseGridCard from "../../components/Course/CourseGridCard";
 
 export default function Home() {
+  const [courseData, setCourseData] = useState([
+    {
+      id:1,
+      courseThumbnail:"https://source.unsplash.com/DLwUVlzrP0Q",
+      courseTitle:"HtML & CSS",
+      coursePrice:"1200"
+    },
+    {
+      id:2,
+      courseThumbnail:"https://source.unsplash.com/DLwUVlzrP0Q",
+      courseTitle:"React Js",
+      coursePrice:"1200"
+    },
+    {
+      id:3,
+      courseThumbnail:"https://source.unsplash.com/DLwUVlzrP0Q",
+      courseTitle:"HtML & CSS",
+      coursePrice:"1200"
+    },
+    {
+      id:4,
+      courseThumbnail:"https://source.unsplash.com/DLwUVlzrP0Q",
+      courseTitle:"HtML & CSS",
+      coursePrice:"1200"
+    },
+    {
+      id:5,
+      courseThumbnail:"https://source.unsplash.com/DLwUVlzrP0Q",
+      courseTitle:"HtML & CSS",
+      coursePrice:"1200"
+    },
+  ])
+  const allCourses = courseData.map((course)=>{
+    
+    return <CourseGridCard key={course.id} course={course} />
+  });
   return (
     <div>
       <Carousel className="carausel">
@@ -33,14 +69,7 @@ export default function Home() {
       </Carousel>
 
       <div className="courses-grid-container">
-       <CourseGridCard />
-       <CourseGridCard />
-       <CourseGridCard />
-       <CourseGridCard />
-       <CourseGridCard />
-       
-       <CourseGridCard />
-       <CourseGridCard />
+       {allCourses}
   
        
       
