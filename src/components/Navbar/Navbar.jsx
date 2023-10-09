@@ -4,12 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import "./Navbar.css";
 
+import { auth } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../features/userSlice";
+import { signOut } from "firebase/auth";
+
 export default function Navbar() {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-
+  const dispatch = useDispatch();
   const toggleMobileMenu = () => {
     setMobileMenuVisible(!mobileMenuVisible);
   };
+  function handleLogOut(e){
+    e.preventDefault();
+    dispatch(logOut())
+    signOut(auth)
+  }
 
   return (
     <div>
@@ -36,7 +46,7 @@ export default function Navbar() {
 
         <div className="right-nav">
           <button>Profile</button>
-          <button>Sign out</button>
+          <button onClick={handleLogOut}>Sign out</button>
         </div>
 
         {/* Mobile menu icon */}
@@ -51,7 +61,7 @@ export default function Navbar() {
           <button>Editor</button>
           <button>About Us</button>
           <button>Profile</button>
-          <button>Sign out</button>
+          <button onClick={handleLogOut}>Sign out</button>
         </div>
       )}
     </div>
