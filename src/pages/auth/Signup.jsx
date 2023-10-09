@@ -16,6 +16,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+
 import { auth } from "../../firebase.js";
 import "./auth.css";
 export default function Signup() {
@@ -39,8 +40,8 @@ export default function Signup() {
           userDetails.email,
           userDetails.password
         ).then(
-          updateProfile(auth.currentUser, { displayName: userDetails.name })
-        )
+          updateProfile(auth.currentUser, { displayName: userDetails.firstName })
+        ).then()
       )
       .catch((err) => {
         console.log(err);
