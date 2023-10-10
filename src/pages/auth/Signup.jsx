@@ -16,11 +16,15 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-
+import {addUserToDB} from "../../features/userSlice"
 import { auth } from "../../firebase.js";
 import "./auth.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 export default function Signup() {
   const [userDetails, setuserDetails] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -28,25 +32,45 @@ export default function Signup() {
       return { ...prev, [name]: value };
     });
   }
+  
+  
   async function handleSubmit() {
-    createUserWithEmailAndPassword(
-      auth,
-      userDetails.email,
-      userDetails.password
-    )
-      .then(
-        signInWithEmailAndPassword(
-          auth,
-          userDetails.email,
-          userDetails.password
-        ).then(
-          updateProfile(auth.currentUser, { displayName: userDetails.firstName })
-        ).then()
-      )
-      .catch((err) => {
-        console.log(err);
-      }) ;
+    try {
+      // Step 1: Create user account
+      const authResult = await createUserWithEmailAndPassword(
+        auth,
+        userDetails.email,
+        userDetails.password
+      );
+  
+      // Step 2: Sign in the user
+      await signInWithEmailAndPassword(
+        auth,
+        userDetails.email,
+        userDetails.password
+      );
+  
+      // Step 3: Update user profile
+      await updateProfile(auth.currentUser, { displayName: userDetails.firstName });
+  
+      // Step 4: Dispatch addUserToDB to add user to Firestore
+      
+    dispatch(
+        addUserToDB({
+          uid: authResult.user.uid,
+          name: userDetails.firstName,
+          email: authResult.user.email,
+          password :userDetails.password
+          // Add other user details as needed
+        })
+      );
+      navigate("/")
+     } catch (error) {
+      console.error('Error during sign-up:', error);
+      // Handle errors, e.g., display an error message to the user
+    }
   }
+ 
   return (
     <div>
       <MDBContainer

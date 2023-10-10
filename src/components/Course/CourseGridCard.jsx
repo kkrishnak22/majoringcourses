@@ -9,13 +9,13 @@ export default function CourseGridCard({course}) {
       <div className="course-item-1">
         <div className="course-image-container">
           <img
-            src={course.courseThumbnail}
+            src={course.courseImg}
             width="100%"
             height="100%"
           />
         </div>
-        <div>{course.courseTitle} </div>
-        <div>{course.coursePrice}</div>
+        <div>{course.courseName} </div>
+        <div>{course.courseDisPrice}</div>
       </div>
     </Link>
   );

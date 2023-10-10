@@ -1,12 +1,16 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import Carousel from "nuka-carousel";
 
 import "./home.css";
 
 import Image from "../../assets/majoringicon.png";
 import CourseGridCard from "../../components/Course/CourseGridCard";
-
+import { getAllCourses,addCourse } from "../../features/courseSlice";
+import { useDispatch,useSelector } from "react-redux";
 export default function Home() {
+  const dispatch = useDispatch();
+  const { allCourses, isLoading } = useSelector((state) => state.data.allCourses);
+
   const [courseData, setCourseData] = useState([
     {
       id:1,
@@ -39,10 +43,22 @@ export default function Home() {
       coursePrice:"1200"
     },
   ])
-  const allCourses = courseData.map((course)=>{
+  const allCoursesData = allCourses.map((course)=>{
     
     return <CourseGridCard key={course.id} course={course} />
   });
+
+ 
+  useEffect(()=>{
+  
+   const courses =  dispatch(getAllCourses())
+   
+  },[dispatch])
+  
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <Carousel className="carausel">
@@ -69,7 +85,7 @@ export default function Home() {
       </Carousel>
 
       <div className="courses-grid-container">
-       {allCourses}
+       {allCoursesData}
   
        
       
